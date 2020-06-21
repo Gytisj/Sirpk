@@ -14,7 +14,7 @@ const NaviBar = Styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 100px;
+  height: 200px;
   h1 {
     position: relative;
     left: 20px;
@@ -26,7 +26,6 @@ const NaviBar = Styled.nav`
     color: red;
   }
   a {
-    font-size: 20px;
     color: #1B2D69;
     text-decoration: none;
   }
@@ -49,8 +48,8 @@ const NaviBar = Styled.nav`
     margin-left: 40px;
   }
   h3 {
-    font-size: 23px;
-    font-weight: 800;
+    font-size: 27px;
+    font-weight: 700;
   }
 `
 
