@@ -1,79 +1,98 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
   NavbarBrand,
-  Nav,
-  NavItem,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
+  NavItem,
 } from 'reactstrap'
-import * as c from './Navbar.module.css'
+import Styled from 'styled-components'
+import { Link } from 'react-router-dom'
 
-const NavBar = (props) => {
-  const [isOpen, setIsOpen] = useState(false)
-
-  const toggle = () => setIsOpen(!isOpen)
-
-  const getOptionsList = (event) => {
-    event.preventDefault()
-
-    fetch('http://localhost:4000/api/v1/user/logout', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then((header) => {
-        if (!header.ok) {
-          throw Error(header)
-        }
-        return header.json()
-      })
-      .then((response) => {
-        alert('ITEMS: successful')
-        console.log(response)
-      })
-      .catch((e) => {
-        console.log(e)
-        alert('ITEMS: failed!')
-      })
+const NaviBar = Styled.nav`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100px;
+  h1 {
+    position: relative;
+    left: 20px;
   }
+  li {
+    list-style: none !important;
+  }
+  button {
+    color: red;
+  }
+  a {
+    font-size: 20px;
+    color: #1B2D69;
+    text-decoration: none;
+  }
+  h4 {
+    width: 100px;
+  }
+  a:hover {
+    color: #C42F26;
+  }
+  #navItems {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    right: 10%;
+    width: 50%;
+    margin-right: 100px;
+  }
+  .dropdown {
+    margin-left: 40px;
+  }
+  h3 {
+    font-size: 23px;
+    font-weight: 800;
+  }
+`
 
+const NavBar = () => {
   return (
-    <div>
-      <Navbar color='light' light expand='md'>
-        <NavbarBrand href='/'>reactstrap</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} className={c.navBar} navbar>
-          <Nav className={('mr-auto', c.navList)} navbar>
-            <NavItem>
-              <Link className={c.linkOptions} to='/'>
-                Home
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link className={c.linkOptions} to='/about'>
-                About
-              </Link>
-            </NavItem>
-            <UncontrolledDropdown nav inNavbar>
-              <DropdownToggle nav caret>
-                Options
-              </DropdownToggle>
-              <DropdownMenu right>
-                <DropdownItem>Option 1</DropdownItem>
-                <DropdownItem>Option 2</DropdownItem>
-              </DropdownMenu>
-            </UncontrolledDropdown>
-          </Nav>
-        </Collapse>
-      </Navbar>
-    </div>
+    <NaviBar>
+      <NavbarBrand href='/'>
+        <h1>SIRPK LOGO</h1>
+      </NavbarBrand>
+      <div id='navItems'>
+        <NavItem>
+          <Link to={'/'}>
+            <h3>Titulinis</h3>
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link to={'/about'}>
+            <h3>Apie Mus</h3>
+          </Link>
+        </NavItem>
+        <NavItem>
+          <Link to={'/contacts'}>
+            <h3>Kontaktai</h3>
+          </Link>
+        </NavItem>
+        <UncontrolledDropdown nav>
+          <DropdownToggle nav>
+            <h3 className={'dropdown'}>Pasirinkimai</h3>
+          </DropdownToggle>
+          <DropdownMenu right>
+            <DropdownItem>Lorem ipsum dolor sit amet</DropdownItem>
+            <DropdownItem>Option 2</DropdownItem>
+            <DropdownItem>Option 3</DropdownItem>
+            <DropdownItem>Option 4</DropdownItem>
+            <DropdownItem>Option 5</DropdownItem>
+            <DropdownItem>Option 6</DropdownItem>
+            <DropdownItem>Option 7</DropdownItem>
+            <DropdownItem>Option 8</DropdownItem>
+          </DropdownMenu>
+        </UncontrolledDropdown>
+      </div>
+    </NaviBar>
   )
 }
 
